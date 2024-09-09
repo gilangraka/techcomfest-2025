@@ -22,9 +22,13 @@ class RegisterController extends Controller
             'name' => 'required|string',
             'email' => 'required|unique:users,email',
             'password' => 'required|string|confirmed',
-            'nomor_hp' => 'required|string',
-            'instansi' => 'required|string',
-            'profesi' => 'required|string'
+            'nik' => 'required|string',
+            'tgl_lahir' => 'required|date',
+            'nomor_hp' => 'required|string|max:20',
+            'gender_id' => 'required|exists:ref_gender,id',
+            'kategori_id' => 'required|exists:ref_kategori,id',
+            'asal_sekolah' => 'required|string',
+            'nama_pembina' => 'required|string'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();

@@ -16,6 +16,7 @@ class RefPeserta extends Model
         'nomor_hp',
         'gender_id',
         'kategori_id',
+        'foto_profil',
         'nama_pembina',
         'asal_sekolah',
         'file_berkas',

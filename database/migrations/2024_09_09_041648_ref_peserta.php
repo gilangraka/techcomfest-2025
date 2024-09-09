@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('nomor_hp', 20);
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('kategori_id')->nullable();
-            $table->string('nama_pembina');
             $table->string('asal_sekolah');
+            $table->string('foto_profil')->nullable();
+            $table->string('nama_pembina');
             $table->string('file_berkas')->nullable();
             $table->unsignedBigInteger('team_id');
             $table->integer('is_ketua')->default(0);
