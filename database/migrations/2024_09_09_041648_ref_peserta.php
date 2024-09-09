@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nik');
             $table->date('tgl_lahir');
-            $table->string(20, 'nomor_hp');
+            $table->string('nomor_hp', 20);
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('kategori_id')->nullable();
             $table->string('nama_pembina');
