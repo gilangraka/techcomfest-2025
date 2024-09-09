@@ -9,4 +9,9 @@ class RefGender extends Model
 {
     use HasFactory;
     protected $table = 'ref_gender';
+
+    public function ref_peserta()
+    {
+        return $this->hasMany(RefPeserta::class, 'gender_id');
+    }
 }

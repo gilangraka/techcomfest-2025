@@ -10,4 +10,9 @@ class RefSoftware extends Model
     use HasFactory;
     protected $table = 'ref_software';
     protected $fillable = ['team_id', 'link_host', 'link_git'];
+
+    public function ref_team()
+    {
+        return $this->belongsTo(RefTeam::class, 'team_id');
+    }
 }

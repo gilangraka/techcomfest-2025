@@ -9,4 +9,9 @@ class RefKategori extends Model
 {
     use HasFactory;
     protected $table = 'ref_kategori';
+
+    public function ref_peserta()
+    {
+        return $this->hasMany(RefPeserta::class, 'kategori_id');
+    }
 }

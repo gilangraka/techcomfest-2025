@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function ref_peserta()
+    {
+        return $this->hasOne(RefPeserta::class, 'user_id');
+    }
 }

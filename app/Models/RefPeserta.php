@@ -22,4 +22,21 @@ class RefPeserta extends Model
         'team_id',
         'is_ketua'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function ref_gender()
+    {
+        return $this->belongsTo(RefGender::class, 'gender_id');
+    }
+    public function ref_kategori()
+    {
+        return $this->belongsTo(RefKategori::class, 'kategori_id');
+    }
+    public function ref_team()
+    {
+        return $this->belongsTo(RefTeam::class, 'team_id');
+    }
 }
