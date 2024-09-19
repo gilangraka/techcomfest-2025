@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CompetitionController extends Controller
 {
     public function webApp() {
-        $techStack = [
+        $techStackWeb = [
             (object)[
                 "name" => "Laravel", 
                 "imgUrl" => "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg"
@@ -26,6 +26,33 @@ class CompetitionController extends Controller
             ],
         ];
 
-        return view('pages.competition.web-app', compact('techStack'));
+        return view('pages.competition.web-app', compact('techStackWeb'));
+    
+    }
+
+    public function ctf() {
+        $techStackCtf = [
+            (object)[
+                "name" => "Burp Suite", 
+                "imgUrl" => "https://assets.tryhackme.com/img/modules/burp-suite.png"
+            ],
+            (object)[
+                "name" => "Wireshark", 
+                "imgUrl" => "https://cdn.icon-icons.com/icons2/1508/PNG/512/wireshark_104082.png"
+            ],
+        ];
+
+        return view('pages.competition.ctf', compact('techStackCtf'));
+    }
+
+    public function uiux() {
+        $techStackUiUx = [
+            (object)[
+                "name" => "Figma", 
+                "imgUrl" => "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
+            ],
+        ];
+
+        return view('pages.competition.ui-ux-design', compact('techStackUiUx'));
     }
 }
