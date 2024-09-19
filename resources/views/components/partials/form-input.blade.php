@@ -1,5 +1,6 @@
 @props([ 'type' => 'text', 'name', 'placeholder', 'label' ])
 
+
 <label for="{{ $name }}" class="block text-sm font-medium text-gray-800">
     {{ $label }}
 </label>
