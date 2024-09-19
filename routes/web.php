@@ -15,4 +15,6 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::get('/login', [AuthenticatedSessionController::class, 'index']);
 Route::prefix('/competition')->controller(CompetitionController::class)->group(function() {
     Route::get('/web-app', 'webApp');
+    Route::get('/ctf', 'ctf');
+    Route::get('/ui-ux', 'uiux');
 });
