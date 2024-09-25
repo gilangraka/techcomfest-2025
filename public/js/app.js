@@ -1,7 +1,14 @@
 const navLinks = document.querySelector(".nav-links");
 function onToggleMenu(e) {
     e.name = e.name === "menu" ? "close" : "menu";
-    navLinks.classList.toggle("top-0");
+
+    if (navLinks.classList.contains("-top-[800px]")) {
+        navLinks.classList.remove("-top-[800px]");
+        navLinks.classList.add("top-0");
+    } else {
+        navLinks.classList.remove("top-0");
+        navLinks.classList.add("-top-[800px]");
+    }
 }
 
 const cards = document.querySelectorAll(".card");
