@@ -61,10 +61,10 @@
             </div>
         @else
             <div class="col-lg-9 col-md-8 d-flex align-items-center gap-2">
-                <a class="btn btn-warning d-flex gap-2" href="{{ route('berkas.lihat', $data['team']->file_berkas) }}">
+                <a class="btn btn-primary d-flex gap-2" href="{{ route('berkas.lihat', $data['team']->file_berkas) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
-                @if ($data['team']->is_verified != 2)
+                @if ($data['team']->is_verified != 1)
                     <button type="submit" class="btn btn-danger d-flex gap-2">
                         <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
                     </button>
@@ -91,11 +91,11 @@
             </div>
         @else
             <div class="col-lg-9 col-md-8 d-flex align-items-center gap-2">
-                <a class="btn btn-warning d-flex gap-2"
+                <a class="btn btn-primary d-flex gap-2"
                     href="{{ route('bukti.lihat', $data['team']->file_bukti_pembayaran) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
-                @if ($data['team']->is_verified != 2)
+                @if ($data['team']->is_verified != 1)
                     <button class="btn btn-danger d-flex gap-2">
                         <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
                     </button>
