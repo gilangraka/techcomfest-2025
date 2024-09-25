@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ref_team', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('nama_team')->unique();
-            $table->string('bukti_pembayaran')->nullable();
+            $table->unsignedBigInteger('kategori_id');
+            $table->string('file_berkas')->nullable();
+            $table->string('file_bukti_pembayaran')->nullable();
             $table->integer('is_verified')->nullable();
             // NULL -> belum mengisi, 1 -> Proses review, 2 -> Not verified, 3 -> Verified
+
             $table->timestamps();
+            $table->foreign('kategori_id')->references('id')->on('ref_kategori')->cascadeOnDelete();
         });
     }
 

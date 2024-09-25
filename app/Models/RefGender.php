@@ -9,6 +9,7 @@ class RefGender extends Model
 {
     use HasFactory;
     protected $table = 'ref_gender';
+    public $timestamps = false;
 
     public function ref_peserta()
     {
