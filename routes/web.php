@@ -27,8 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::post('upload-berkas', [BerkasController::class, 'uploadBerkas'])->name('berkas.upload');
     Route::get('lihat-berkas/{berkas}', [BerkasController::class, 'lihatBerkas'])->name('berkas.lihat');
     Route::post('delete-berkas', [BerkasController::class, 'deleteBerkas'])->name('berkas.delete');
+
     Route::post('upload-bukti-pembayaran', [BerkasController::class, 'uploadBuktiPembayaran'])->name('bukti.upload');
-    Route::get('lihat-bukti-pembayaran/{bukti-pembayaran}', [BerkasController::class, 'lihatBuktiPembayaran'])->name('bukti.lihat');
+    Route::get('lihat-bukti-bayar/{bukti_bayar}', [BerkasController::class, 'lihatBuktiPembayaran'])->name('bukti.lihat');
     Route::post('delete-bukti-pembayaran', [BerkasController::class, 'deleteBuktiPembayaran'])->name('bukti.delete');
 });
 

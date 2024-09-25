@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\RefGender;
+use App\Models\RefKategori;
 use App\Models\RefPeserta;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +15,11 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('pages.auth.register');
+        $referensi = [
+            'ref_gender' => RefGender::all(),
+            'ref_kategori' => RefKategori::all()
+        ];
+        return view('pages.auth.register', compact('referensi'));
     }
 
     public function store(Request $request)
