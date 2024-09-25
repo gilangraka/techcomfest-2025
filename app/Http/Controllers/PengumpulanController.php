@@ -17,48 +17,53 @@ class PengumpulanController extends Controller
         $kategori_id = $user->ref_peserta->kategori_id;
         $team_id = $user->ref_peserta->team_id;
 
-        $validators = [
-            1 => [
-                'rules' => [
-                    'link_host' => 'required|string',
-                    'link_git' => 'required|string',
+        try {
+            $validators = [
+                1 => [
+                    'rules' => [
+                        'link_host' => 'required|string',
+                        'link_git' => 'required|string',
+                    ],
+                    'model' => RefSoftware::class,
                 ],
-                'model' => RefSoftware::class,
-            ],
-            2 => [
-                'rules' => [
-                    'file_rar' => 'required|file|mimes:zip,rar',
+                2 => [
+                    'rules' => [
+                        'file_rar' => 'required|file|mimes:zip,rar',
+                    ],
+                    'model' => RefNetwork::class,
                 ],
-                'model' => RefNetwork::class,
-            ],
-            3 => [
-                'rules' => [
-                    'orisinalitas_karya' => 'required|file|mimes:pdf,docx',
-                    'hasil_karya' => 'required|file|mimes:pdf,docx',
+                3 => [
+                    'rules' => [
+                        'orisinalitas_karya' => 'required|file|mimes:pdf,docx',
+                        'hasil_karya' => 'required|file|mimes:pdf,docx',
+                    ],
+                    'model' => RefMulmed::class,
                 ],
-                'model' => RefMulmed::class,
-            ],
-        ];
+            ];
 
-        if (array_key_exists($kategori_id, $validators)) {
-            $validator = Validator::make($request->all(), $validators[$kategori_id]['rules']);
+            if (array_key_exists($kategori_id, $validators)) {
+                $validator = Validator::make($request->all(), $validators[$kategori_id]['rules']);
 
-            if ($validator->fails()) {
-                foreach ($validator->errors()->all() as $error) {
-                    notyf()->error($error);
+                if ($validator->fails()) {
+                    foreach ($validator->errors()->all() as $error) {
+                        notyf()->error($error);
+                    }
+                    return back();
                 }
+
+                $validatedData = $validator->validated();
+                $validatedData['team_id'] = $team_id;
+                $validators[$kategori_id]['model']::create($validatedData);
+
+                notyf()->success('Berhasil mengumpulkan karya');
                 return back();
             }
 
-            $validatedData = $validator->validated();
-            $validatedData['team_id'] = $team_id;
-            $validators[$kategori_id]['model']::create($validatedData);
-
-            notyf()->success('Berhasil mengumpulkan karya');
+            // Jika tidak ada kategori yang cocok
+            return back()->withErrors(['error' => 'Kategori tidak valid.']);
+        } catch (\Exception $e) {
+            notyf()->error($e->getMessage());
             return back();
         }
-
-        // Jika tidak ada kategori yang cocok
-        return back()->withErrors(['error' => 'Kategori tidak valid.']);
     }
 }
