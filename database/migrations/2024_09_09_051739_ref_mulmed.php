@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ref_mulmed', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
+            $table->uuid('team_id');
             $table->string('orisinalitas_karya');
             $table->string('hasil_karya');
             $table->timestamps();

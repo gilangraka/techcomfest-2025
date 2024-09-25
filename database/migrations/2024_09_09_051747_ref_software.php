@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ref_software', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
+            $table->uuid('team_id');
             $table->string('link_host');
             $table->string('link_git');
             $table->timestamps();

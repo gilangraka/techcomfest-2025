@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ref_network', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id');
+            $table->uuid('team_id');
             $table->string('file_rar');
             $table->timestamps();
 
