@@ -64,16 +64,6 @@ class BerkasController extends Controller
         return back();
     }
 
-    public function lihatBerkas($berkas)
-    {
-        $filePath = 'file_berkas/' . $berkas;
-        if (!Storage::disk('public')->exists($filePath)) {
-            return abort(404, 'File not found');
-        }
-
-        return response()->download(storage_path('app/public/' . $filePath));
-    }
-
     public function deleteBerkas()
     {
         $user = Auth::user();
@@ -119,16 +109,6 @@ class BerkasController extends Controller
             notyf()->error($e->getMessage());
         }
         return back();
-    }
-
-    public function lihatBuktiPembayaran($bukti_bayar)
-    {
-        $filePath = 'file_bukti_pembayaran/' . $bukti_bayar;
-        if (!Storage::disk('public')->exists($filePath)) {
-            return abort(404, 'File not found');
-        }
-
-        return response()->download(storage_path('app/public/' . $filePath));
     }
 
     public function deleteBuktiPembayaran()

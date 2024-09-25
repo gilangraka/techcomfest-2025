@@ -61,7 +61,8 @@
             </div>
         @else
             <div class="col-lg-9 col-md-8 d-flex align-items-center gap-2">
-                <a class="btn btn-primary d-flex gap-2" href="{{ route('berkas.lihat', $data['team']->file_berkas) }}">
+                <a class="btn btn-primary d-flex gap-2"
+                    href="{{ route('berkas.download', ['1', $data['team']->file_berkas]) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
                 @if ($data['team']->is_verified != 1)
@@ -92,7 +93,7 @@
         @else
             <div class="col-lg-9 col-md-8 d-flex align-items-center gap-2">
                 <a class="btn btn-primary d-flex gap-2"
-                    href="{{ route('bukti.lihat', $data['team']->file_bukti_pembayaran) }}">
+                    href="{{ route('berkas.download', ['2', $data['team']->file_bukti_pembayaran]) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
                 @if ($data['team']->is_verified != 1)

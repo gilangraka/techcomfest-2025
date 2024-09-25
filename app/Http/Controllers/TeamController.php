@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RefMulmed;
+use App\Models\RefNetwork;
 use App\Models\RefPeserta;
+use App\Models\RefSoftware;
 use App\Models\RefTeam;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +17,7 @@ class TeamController extends Controller
 {
     public function index()
     {
-        $user = User::with('ref_peserta')->find(Auth::id());
+        $user = User::with('ref_peserta.ref_team')->find(Auth::id());
         $requiredFields = [
             $user->name,
             $user->ref_peserta->nik,
@@ -41,6 +44,27 @@ class TeamController extends Controller
 
             $data['ketua'] = $tim->firstWhere('is_ketua', 1);
             $data['anggota'] = $tim->where('is_ketua', 0);
+
+            $data['pengumpulan'] = null;
+            $kategori_id = $user->ref_peserta->ref_team->kategori_id;
+            if ($kategori_id == 1) {
+                $pengumpulan = RefSoftware::where('team_id', $data['team']->id)->first();
+                if ($pengumpulan) {
+                    $data['pengumpulan'] = $pengumpulan;
+                }
+            }
+            if ($kategori_id == 2) {
+                $pengumpulan = RefNetwork::where('team_id', $data['team']->id)->first();
+                if ($pengumpulan) {
+                    $data['pengumpulan'] = $pengumpulan;
+                }
+            }
+            if ($kategori_id == 3) {
+                $pengumpulan = RefMulmed::where('team_id', $data['team']->id)->first();
+                if ($pengumpulan) {
+                    $data['pengumpulan'] = $pengumpulan;
+                }
+            }
         }
 
         return view('pages.team.index', compact('data'));

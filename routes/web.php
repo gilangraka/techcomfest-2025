@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LihatBerkasController;
+use App\Http\Controllers\LihatKaryaController;
 use App\Http\Controllers\PengumpulanController;
 use App\Http\Controllers\TeamController;
 
@@ -26,11 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::post('buat-team', [TeamController::class, 'buatTeam'])->name('team.add');
 
     Route::post('upload-berkas', [BerkasController::class, 'uploadBerkas'])->name('berkas.upload');
-    Route::get('lihat-berkas/{berkas}', [BerkasController::class, 'lihatBerkas'])->name('berkas.lihat');
     Route::post('delete-berkas', [BerkasController::class, 'deleteBerkas'])->name('berkas.delete');
+    Route::get('download-berkas/{kode}/{berkas}', [LihatBerkasController::class, 'downloadBerkas'])->name('berkas.download');
 
     Route::post('upload-bukti-pembayaran', [BerkasController::class, 'uploadBuktiPembayaran'])->name('bukti.upload');
-    Route::get('lihat-bukti-bayar/{bukti_bayar}', [BerkasController::class, 'lihatBuktiPembayaran'])->name('bukti.lihat');
     Route::post('delete-bukti-pembayaran', [BerkasController::class, 'deleteBuktiPembayaran'])->name('bukti.delete');
 
     Route::resource('pengumpulan', PengumpulanController::class)->only('store');
