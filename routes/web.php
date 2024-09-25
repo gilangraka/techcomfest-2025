@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PengumpulanController;
 use App\Http\Controllers\TeamController;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('upload-bukti-pembayaran', [BerkasController::class, 'uploadBuktiPembayaran'])->name('bukti.upload');
     Route::get('lihat-bukti-bayar/{bukti_bayar}', [BerkasController::class, 'lihatBuktiPembayaran'])->name('bukti.lihat');
     Route::post('delete-bukti-pembayaran', [BerkasController::class, 'deleteBuktiPembayaran'])->name('bukti.delete');
+
+    Route::resource('pengumpulan', PengumpulanController::class)->only('store');
 });
 
 require __DIR__ . '/auth.php';

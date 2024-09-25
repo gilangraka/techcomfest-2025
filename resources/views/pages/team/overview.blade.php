@@ -64,9 +64,11 @@
                 <a class="btn btn-warning d-flex gap-2" href="{{ route('berkas.lihat', $data['team']->file_berkas) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
-                <button type="submit" class="btn btn-danger d-flex gap-2">
-                    <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
-                </button>
+                @if ($data['team']->is_verified != 2)
+                    <button type="submit" class="btn btn-danger d-flex gap-2">
+                        <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
+                    </button>
+                @endif
             </div>
         @endif
     </div>
@@ -93,9 +95,11 @@
                     href="{{ route('bukti.lihat', $data['team']->file_bukti_pembayaran) }}">
                     <i class="nav-icon bi bi-eye"></i>
                 </a>
-                <button class="btn btn-danger d-flex gap-2">
-                    <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
-                </button>
+                @if ($data['team']->is_verified != 2)
+                    <button class="btn btn-danger d-flex gap-2">
+                        <i class="nav-icon bi bi-trash"></i><span>Hapus</span>
+                    </button>
+                @endif
             </div>
         @endif
     </div>
@@ -105,12 +109,15 @@
 <div class="row mt-3">
     <p class="col-lg-3 col-md-4 label "><b>Status Verifikasi</b></p>
     @switch($data['team']->is_verified)
-        @case(null)
-            <span class="col-lg-9 col-md-8 text-danger">Belum diverifikasi</span>
+        @case(0)
+            <span class="col-lg-9 col-md-8" style="text-align: justify">
+                <span class="text-danger">Not Verified</span><br>
+                {{ $data['team']->keterangan }}
+            </span>
         @break
 
         @case(1)
-            <span class="col-lg-9 col-md-8 text-success">Terverifikasi</span>
+            <span class="col-lg-9 col-md-8 text-success">Verified</span>
         @break
 
         @default

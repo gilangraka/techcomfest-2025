@@ -23,11 +23,42 @@
 
                 <li class="nav-header">PAGES</li>
 
+                <li class="nav-item ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon bi bi-database"></i>
+                        <p>
+                            Management
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-dot"></i>
+                                <p>Manage User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-dot"></i>
+                                <p>Manage Team</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-dot"></i>
+                                <p>Manage Independent</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('team.index') }}"
                         class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}"> <i
                             class="nav-icon bi bi-people"></i>
-                        <p>Kelola Team</p>
+                        <p>Team</p>
                     </a>
                 </li>
 

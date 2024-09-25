@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.layout')
 
 @section('title')
-    Kelola Team
+    Team
 @endsection
 
 @section('content')
