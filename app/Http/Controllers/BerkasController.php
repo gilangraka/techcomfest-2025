@@ -84,7 +84,7 @@ class BerkasController extends Controller
         $user->ref_peserta->ref_team->file_berkas = null;
         $user->ref_peserta->ref_team->save();
 
-        notyf()->success("Berhasil menghapus file!");
+        notyf()->success('Berhasil menghapus file');
         return back();
     }
 
@@ -121,9 +121,9 @@ class BerkasController extends Controller
         return back();
     }
 
-    public function lihatBuktiPembayaran($bukti_pembayaran)
+    public function lihatBuktiPembayaran($bukti_bayar)
     {
-        $filePath = 'file_bukti_pembayaran/' . $bukti_pembayaran;
+        $filePath = 'file_bukti_pembayaran/' . $bukti_bayar;
         if (!Storage::disk('public')->exists($filePath)) {
             return abort(404, 'File not found');
         }
@@ -141,7 +141,7 @@ class BerkasController extends Controller
         $user->ref_peserta->ref_team->file_bukti_pembayaran = null;
         $user->ref_peserta->ref_team->save();
 
-        notyf()->success("Berhasil menghapus file!");
+        notyf()->success('Berhasil menghapus file');
         return back();
     }
 }
