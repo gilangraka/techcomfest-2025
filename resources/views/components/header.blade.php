@@ -8,7 +8,7 @@
             />
         </div>
         <div
-            class='nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 top-[-800px] md:w-auto w-full flex items-center px-5'
+            class='nav-links duration-500 md:static absolute bg-white md:min-h-fit min-h-[60vh] left-0 -top-[800px] md:w-auto w-full flex items-center px-5'
         >
             <ul
                 class='flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8'
