@@ -37,6 +37,31 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $permissions = ['Manage User', 'Manage Team', 'Manage Independent', 'Manage'];
+        foreach ($permissions as $key => $value) {
+            DB::table('permissions')->insert([
+                'name' => $value,
+                'guard_name' => 'web',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        $role_has_permissions = [
+            '1' => ['1', '2', '3', '4'],
+            '2' => ['2', '4'],
+            '3' => ['2', '4'],
+            '4' => ['2', '4']
+        ];
+        foreach ($role_has_permissions as $role_id => $permissions) {
+            foreach ($permissions as $permission_id) {
+                DB::table('role_has_permissions')->insert([
+                    'permission_id' => $permission_id,
+                    'role_id' => $role_id
+                ]);
+            }
+        }
+
         $user = new User([
             'name' => 'Gilang Raka Ramadhan',
             'email' => 'rakakiki212@gmail.com',

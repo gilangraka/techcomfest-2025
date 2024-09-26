@@ -37,8 +37,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('pengumpulan', PengumpulanController::class)->only('store');
 
-    Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy']);
-    Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show');
+    Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy'])->middleware('can:Manage Team');
+    Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show')->middleware('can:Manage Team');
 });
 
 require __DIR__ . '/auth.php';

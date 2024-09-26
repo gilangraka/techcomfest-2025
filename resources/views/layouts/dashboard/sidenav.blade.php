@@ -25,37 +25,46 @@
                 @php
                     $manage = ['manage-team.index', 'manage-user.index', 'manage-independent.index'];
                 @endphp
-                <li class="nav-item {{ request()->routeIs($manage) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon bi bi-database"></i>
-                        <p>
-                            Management
-                            <i class="nav-arrow bi bi-chevron-right"></i>
-                        </p>
-                    </a>
 
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-dot"></i>
-                                <p>Manage User</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('manage-team.index') }}"
-                                class="nav-link {{ request()->routeIs('manage-team.index') ? 'active' : '' }}">
-                                <i class="nav-icon bi bi-dot"></i>
-                                <p>Manage Team</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-dot"></i>
-                                <p>Manage Independent</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('Manage')
+                    <li class="nav-item {{ request()->routeIs($manage) ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-database"></i>
+                            <p>
+                                Management
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+
+                        <ul class="nav nav-treeview">
+                            @can('Manage User')
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Manage User</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Manage Team')
+                                <li class="nav-item">
+                                    <a href="{{ route('manage-team.index') }}"
+                                        class="nav-link {{ request()->routeIs('manage-team.index') ? 'active' : '' }}">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Manage Team</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Manage Independent')
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Manage Independent</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
 
                 <li class="nav-item">
                     <a href="{{ route('team.index') }}"
