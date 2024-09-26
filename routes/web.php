@@ -7,6 +7,7 @@ use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LihatBerkasController;
 use App\Http\Controllers\LihatKaryaController;
+use App\Http\Controllers\Management\ManageTeamController;
 use App\Http\Controllers\PengumpulanController;
 use App\Http\Controllers\TeamController;
 
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::post('delete-bukti-pembayaran', [BerkasController::class, 'deleteBuktiPembayaran'])->name('bukti.delete');
 
     Route::resource('pengumpulan', PengumpulanController::class)->only('store');
+
+    Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy']);
+    Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show');
 });
 
 require __DIR__ . '/auth.php';

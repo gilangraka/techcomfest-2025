@@ -7,6 +7,7 @@ use App\Models\RefTeam;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ManageTeamController extends Controller
@@ -20,32 +21,38 @@ class ManageTeamController extends Controller
             'IndependenM' => 3,
         ];
 
-        switch (true) {
-            case $user->hasRole('Developer'):
-                $data = RefTeam::whereNotNull('file_berkas')
-                    ->whereNotNull('file_bukti_pembayaran')
-                    ->get();
-                break;
-            case array_key_exists($user->getRoleNames()->first(), $kategoriMap):
-                $kategori_id = $kategoriMap[$user->getRoleNames()->first()];
-                $data = RefTeam::where('kategori_id', $kategori_id)
+        $data = collect();
+        if ($user->hasRole('Developer')) {
+            $developerData = RefTeam::with('ref_kategori')->whereNotNull('file_berkas')
+                ->whereNotNull('file_bukti_pembayaran')
+                ->get();
+            $data = $data->merge($developerData);
+        }
+
+        foreach ($kategoriMap as $key => $value) {
+            if ($user->hasRole($key)) {
+                $kategoriData = RefTeam::with('ref_kategori')->where('kategori_id', $value)
                     ->whereNotNull('file_berkas')
                     ->whereNotNull('file_bukti_pembayaran')
                     ->get();
-                break;
-            default:
-                $data = collect();
-                break;
+                $data = $data->merge($kategoriData);
+            }
         }
-
+        // return $data
         return view('pages.manage-team.index', compact('data'));
+    }
+
+    public function show($id)
+    {
+        $data = RefTeam::with(['ref_kategori', 'ref_peserta.user'])->find($id);
+        return response()->json($data);
     }
 
     // Verifikasi Tim
     public function update($id)
     {
         $team = RefTeam::find($id);
-        $team->is_verified = 2;
+        $team->is_verified = 1;
         $team->keterangan = null;
         $team->save();
 
@@ -67,10 +74,18 @@ class ManageTeamController extends Controller
             return back();
         }
 
+
+
         $team = RefTeam::find($id);
-        $team->is_verified = 1;
+        $path_berkas = 'file_berkas/' . $team->file_berkas;
+        $path_pembayaran = 'file_bukti_pembayaran/' . $team->file_bukti_pembayaran;
+        Storage::disk('public')->delete($path_berkas);
+        Storage::disk('public')->delete($path_pembayaran);
+        $team->file_berkas = null;
+        $team->file_bukti_pembayaran = null;
+        $team->is_verified = 0;
         $team->keterangan = $request->keterangan;
-        $team->save;
+        $team->save();
 
         notyf()->success('Berhasil menolak verifikasi tim!');
         return back();

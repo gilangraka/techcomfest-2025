@@ -22,8 +22,10 @@
                 </li>
 
                 <li class="nav-header">PAGES</li>
-
-                <li class="nav-item ">
+                @php
+                    $manage = ['manage-team.index', 'manage-user.index', 'manage-independent.index'];
+                @endphp
+                <li class="nav-item {{ request()->routeIs($manage) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-database"></i>
                         <p>
@@ -40,7 +42,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('manage-team.index') }}"
+                                class="nav-link {{ request()->routeIs('manage-team.index') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-dot"></i>
                                 <p>Manage Team</p>
                             </a>

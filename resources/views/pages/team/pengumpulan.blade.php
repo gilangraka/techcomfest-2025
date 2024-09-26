@@ -6,6 +6,18 @@
         </p>
     </div>
 @else
+    @if ($data['pengumpulan'] != null)
+        <div class="rot mt-3">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <span style="display: block; text-align: justify;">
+                    <strong>🎉 Selamat! Karya kamu sudah berhasil dikumpulkan!</strong> <br><br> Jangan lewatkan momen
+                    seru
+                    berikutnya—tunggu hasil finalnya di Instagram Techcomfest! 📸✨
+                </span>
+            </div>
+        </div>
+    @endif
+
     <form id="submitForm" action="{{ route('pengumpulan.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row mt-3">
