@@ -46,14 +46,17 @@
                             Verifikasi</button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100">Verifikasi Tim</button>
+                        <button onclick="verifikasi()" type="submit" class="btn btn-primary w-100">Verifikasi
+                            Tim</button>
                     </div>
                 </div>
             </div>
         </div>
+        <form id="verifikasiForm" method="POST">
+            @csrf
+            @method('PUT')
+        </form>
     </div>
-
-
 </div>
 
 @push('js')
@@ -91,6 +94,14 @@
             } catch (error) {
                 console.error('There has been a problem with your fetch operation:', error);
             }
+        }
+
+        function verifikasi() {
+            const id_team = document.getElementById('id_team').value;
+            const verifForm = document.getElementById('verifikasiForm');
+
+            verifForm.action = `{{ route('manage-team.update', ':id_team') }}`.replace(':id_team', id_team);
+            verifForm.submit();
         }
 
         function tutupTolakDialog() {

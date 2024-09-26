@@ -22,11 +22,11 @@
                 </li>
 
                 <li class="nav-header">PAGES</li>
-                @php
-                    $manage = ['manage-team.index', 'manage-user.index', 'manage-independent.index'];
-                @endphp
 
                 @can('Manage')
+                    @php
+                        $manage = ['manage-team.index', 'manage-user.index', 'manage-independent.index'];
+                    @endphp
                     <li class="nav-item {{ request()->routeIs($manage) ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
                             <i class="nav-icon bi bi-database"></i>
@@ -59,6 +59,51 @@
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon bi bi-dot"></i>
                                         <p>Manage Independent</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('Hasil Karya')
+                    @php
+                        $hasil_karya = ['karya-software.index', 'karya-multimedia.index', 'karya-network.index'];
+                    @endphp
+                    <li class="nav-item {{ request()->routeIs($hasil_karya) ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon bi bi-award"></i>
+                            <p>
+                                Hasil Karya
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                        </a>
+
+                        <ul class="nav nav-treeview">
+                            @can('Hasil Multimedia')
+                                <li class="nav-item">
+                                    <a href="{{ route('hasil-multimedia.index') }}"
+                                        class="nav-link {{ request()->routeIs('hasil-multimedia.index') ? 'active' : '' }}">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Multimedia</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Hasil Network')
+                                <li class="nav-item">
+                                    <a href="{{ route('hasil-network.index') }}"
+                                        class="nav-link {{ request()->routeIs('hasil-network.index') ? 'active' : '' }}">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Network</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Hasil Software')
+                                <li class="nav-item">
+                                    <a href="{{ route('hasil-software.index') }}"
+                                        class="nav-link {{ request()->routeIs('hasil-software.index') ? 'active' : '' }}">
+                                        <i class="nav-icon bi bi-dot"></i>
+                                        <p>Software</p>
                                     </a>
                                 </li>
                             @endcan
