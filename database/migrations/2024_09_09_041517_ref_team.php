@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('file_berkas')->nullable();
             $table->string('file_bukti_pembayaran')->nullable();
             $table->integer('is_verified')->nullable();
-            $table->string('keterangan')->default(0);
+            $table->string('keterangan')->nullable();
             // 0 -> Ditolak / Not Verified, 1 -> Verified
             $table->timestamps();
             $table->foreign('kategori_id')->references('id')->on('ref_kategori')->cascadeOnDelete();
