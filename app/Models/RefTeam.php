@@ -21,7 +21,7 @@ class RefTeam extends Model
 
     use HasFactory;
     protected $table = 'ref_team';
-    protected $fillable = ['nama_team', 'kategori_id', 'file_berkas', 'file_bukti_pembayaran', 'is_verified'];
+    protected $fillable = ['nama_team', 'kategori_id', 'file_berkas', 'file_bukti_pembayaran', 'is_verified', 'keterangan'];
     protected $casts = [
         'id' => 'string',
     ];
