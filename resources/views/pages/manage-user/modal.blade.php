@@ -6,34 +6,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label for="user_name" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="name" value="{{ $value->name }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="user_email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" value="{{ $value->email }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="user_nik" class="form-label">NIK</label>
-                    <input type="text" class="form-control" id="nik" value="{{ $value->ref_peserta->nik }}"
-                        readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="user_tgl_lahir" class="form-label">Tanggal Lahir</label>
-                    <input type="date" class="form-control" id="tgl_lahir"
-                        value="{{ $value->ref_peserta->tgl_lahir }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="user_nomor_hp" class="form-label">Nomor HP</label>
-                    <input type="text" class="form-control" id="nomor_hp"
-                        value="{{ $value->ref_peserta->nomor_hp }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="user_asal_sekolah" class="form-label">Asal Sekolah</label>
-                    <input type="text" class="form-control" id="asal_sekolah"
-                        value="{{ $value->ref_peserta->asal_sekolah }}" readonly>
-                </div>
+                <input type="text" hidden id="id_user">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Nama</th>
+                        <td id="name" value="{{ $value->name }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td id="email" value="{{ $value->email }}"></td>
+                    </tr>
+                    <tr>
+                        <th>NIK</th>
+                        <td id="nik" value="{{ $value->ref_peserta->nik }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td id="tgl_lahir" value="{{ $value->ref_peserta->tgl_lahir }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Nomor HP</th>
+                        <td id="nomor_hp" value="{{ $value->ref_peserta->nomor_hp }}"></td>
+                    </tr>
+                    <tr>
+                        <th>Asal Sekolah</th>
+                        <td id="asal_sekolah" value="{{ $value->ref_peserta->asal_sekolah }}"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
