@@ -10,30 +10,83 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Nama</th>
-                        <td id="name" value="{{ $value->name }}"></td>
+                        <td id="name"></td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td id="email" value="{{ $value->email }}"></td>
+                        <td id="email"></td>
                     </tr>
                     <tr>
                         <th>NIK</th>
-                        <td id="nik" value="{{ $value->ref_peserta->nik }}"></td>
+                        <td id="nik"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td id="gender"></td>
+                    </tr>
+                    <tr>
+                        <th>Kategori Lomba</th>
+                        <td id="kategori"></td>
+                    </tr>
+                    <tr>
+                        <th>Team</th>
+                        <td id="team"></td>
                     </tr>
                     <tr>
                         <th>Tanggal Lahir</th>
-                        <td id="tgl_lahir" value="{{ $value->ref_peserta->tgl_lahir }}"></td>
+                        <td id="tgl_lahir"></td>
                     </tr>
                     <tr>
                         <th>Nomor HP</th>
-                        <td id="nomor_hp" value="{{ $value->ref_peserta->nomor_hp }}"></td>
+                        <td id="nomor_hp"></td>
                     </tr>
                     <tr>
                         <th>Asal Sekolah</th>
-                        <td id="asal_sekolah" value="{{ $value->ref_peserta->asal_sekolah }}"></td>
+                        <td id="asal_sekolah"></td>
                     </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+@push('js')
+    <script>
+        async function openUserModal(id_user) {
+            const apiUrl = `{{ route('manage-user.show', ['manage_user' => 'ID_PLACEHOLDER']) }}`.replace(
+                'ID_PLACEHOLDER',
+                id_user);
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                const tags = ['name', 'email', 'nik', 'tgl_lahir', 'nomor_hp', 'asal_sekolah', 'gender', 'kategori',
+                    'team'
+                ];
+                const elements = {};
+
+                tags.forEach(tag => {
+                    elements[tag] = document.getElementById(tag);
+                });
+
+                elements['name'].innerText = data.name;
+                elements['email'].innerText = data.email;
+                elements['nik'].innerText = data.ref_peserta.nik;
+                elements['tgl_lahir'].innerText = data.ref_peserta.tgl_lahir;
+                elements['nomor_hp'].innerText = data.ref_peserta.nomor_hp;
+                elements['asal_sekolah'].innerText = data.ref_peserta.asal_sekolah;
+                elements['gender'].innerText = data.ref_peserta.ref_gender.nama_gender;
+                elements['kategori'].innerText = data.ref_peserta.ref_kategori.nama_kategori;
+                elements['team'].innerText = data.ref_peserta?.ref_team?.nama_team ? `${data.ref_peserta.ref_team
+                    .nama_team}` : '-';
+
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+    </script>
+@endpush
