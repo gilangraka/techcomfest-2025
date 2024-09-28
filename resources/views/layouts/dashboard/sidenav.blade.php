@@ -39,7 +39,8 @@
                         <ul class="nav nav-treeview">
                             @can('Manage User')
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('manage-user.index') }}"
+                                        class="nav-link {{ request()->routeIs('manage-user.index') ? 'active' : '' }}">
                                         <i class="nav-icon bi bi-dot"></i>
                                         <p>Manage User</p>
                                     </a>

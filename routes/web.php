@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HasilKaryaController;
 use App\Http\Controllers\LihatBerkasController;
 use App\Http\Controllers\LihatKaryaController;
+use App\Http\Controllers\Management\ManageUserController;
 use App\Http\Controllers\Management\ManageTeamController;
 use App\Http\Controllers\PengumpulanController;
 use App\Http\Controllers\TeamController;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('delete-bukti-pembayaran', [BerkasController::class, 'deleteBuktiPembayaran'])->name('bukti.delete');
 
     Route::resource('pengumpulan', PengumpulanController::class)->only('store');
+
+    Route::resource('manage-user', ManageUserController::class);
 
     Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy'])->middleware('can:Manage Team');
     Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show')->middleware('can:Manage Team');
