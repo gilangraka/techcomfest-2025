@@ -57,7 +57,8 @@
                             @endcan
                             @can('Manage Independent')
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('manage-independent.index') }}"
+                                        class="nav-link {{ request()->routeIs('manage-independent.index') ? 'active' : '' }}">
                                         <i class="nav-icon bi bi-dot"></i>
                                         <p>Manage Independent</p>
                                     </a>

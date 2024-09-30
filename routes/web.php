@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HasilKaryaController;
 use App\Http\Controllers\LihatBerkasController;
 use App\Http\Controllers\LihatKaryaController;
+use App\Http\Controllers\Management\ManageIndependentController;
 use App\Http\Controllers\Management\ManageUserController;
 use App\Http\Controllers\Management\ManageTeamController;
 use App\Http\Controllers\PengumpulanController;
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy'])->middleware('can:Manage Team');
     Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show')->middleware('can:Manage Team');
+
+    Route::resource('manage-independent', ManageIndependentController::class);
 
     Route::get('hasil-software', [HasilKaryaController::class, 'software'])->name('hasil-software.index')->middleware('can:Hasil Software');
     Route::get('hasil-multimedia', [HasilKaryaController::class, 'multimedia'])->name('hasil-multimedia.index')->middleware('can:Hasil Multimedia');
