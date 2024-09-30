@@ -13,8 +13,8 @@ class ManageIndependentController extends Controller
      */
     public function index()
     {
-        $data = User::whereHas('roles', function ($query) {
-            $query->whereIn('name', ['independentS', 'independentM', 'independentN']);
+        $data = User::with('roles')->whereHas('roles', function ($query) {
+            $query->whereIn('name', ['independenS', 'independenM', 'independenN']);
         })->get();
 
 
