@@ -113,13 +113,15 @@
                     </li>
                 @endcan
 
-                <li class="nav-item">
-                    <a href="{{ route('team.index') }}"
-                        class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}"> <i
-                            class="nav-icon bi bi-people"></i>
-                        <p>Team</p>
-                    </a>
-                </li>
+                @can('Team')
+                    <li class="nav-item">
+                        <a href="{{ route('team.index') }}"
+                            class="nav-link {{ request()->routeIs('team.index') ? 'active' : '' }}"> <i
+                                class="nav-icon bi bi-people"></i>
+                            <p>Team</p>
+                        </a>
+                    </li>
+                @endcan
 
                 <hr class="my-3 text-white" />
                 <li class="nav-item"> <a href="https://wa.me/6285742089646" class="nav-link" target="_blank"> <i

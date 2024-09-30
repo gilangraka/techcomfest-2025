@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $permissions = ['Manage User', 'Manage Team', 'Manage Independent', 'Manage', 'Hasil Multimedia', 'Hasil Network', 'Hasil Software', 'Hasil Karya'];
+        $permissions = ['Manage User', 'Manage Team', 'Manage Independent', 'Manage', 'Hasil Multimedia', 'Hasil Network', 'Hasil Software', 'Hasil Karya', 'Team'];
         foreach ($permissions as $key => $value) {
             DB::table('permissions')->insert([
                 'name' => $value,
@@ -51,7 +51,8 @@ class DatabaseSeeder extends Seeder
             '1' => ['1', '2', '3', '4', '5', '6', '7', '8'],
             '2' => ['2', '4', '7', '8'],
             '3' => ['2', '4', '6', '8'],
-            '4' => ['2', '4', '5', '8']
+            '4' => ['2', '4', '5', '8'],
+            '5' => ['9']
         ];
         foreach ($role_has_permissions as $role_id => $permissions) {
             foreach ($permissions as $permission_id) {

@@ -26,10 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::post('update-profile', [DashboardController::class, 'update_profile'])->name('profile.update');
     Route::post('delete-profile', [DashboardController::class, 'delete_profile'])->name('profile.delete');
 
-    Route::resource('team', TeamController::class);
-    Route::post('cari-team', [TeamController::class, 'cariTeam'])->name('team.find');
-    Route::post('masuk-team', [TeamController::class, 'masukTeam'])->name('team.masuk');
-    Route::post('buat-team', [TeamController::class, 'buatTeam'])->name('team.add');
+    Route::resource('team', TeamController::class)->only(['index', 'show'])->middleware('can:Team');
+    Route::post('cari-team', [TeamController::class, 'cariTeam'])->name('team.find')->middleware('can:Team');
+    Route::post('masuk-team', [TeamController::class, 'masukTeam'])->name('team.masuk')->middleware('can:Team');
+    Route::post('buat-team', [TeamController::class, 'buatTeam'])->name('team.add')->middleware('can:Team');
 
     Route::post('upload-berkas', [BerkasController::class, 'uploadBerkas'])->name('berkas.upload');
     Route::post('delete-berkas', [BerkasController::class, 'deleteBerkas'])->name('berkas.delete');
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('pengumpulan', PengumpulanController::class)->only('store');
 
-    Route::resource('manage-user', ManageUserController::class)->only(['index', 'show'])->middleware('can:Manage User');
+    Route::resource('manage-user', ManageUserController::class)->only(['index', 'show'])->middleware('can:Manage');
 
     Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy'])->middleware('can:Manage Team');
     Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show')->middleware('can:Manage Team');

@@ -1,3 +1,8 @@
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/notyf/notyf.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/notyf/notyf.min.js"></script>
+@endpush
+
 <div class="modal fade" id="createTeamModal" tabindex="-1" aria-labelledby="createTeamModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ route('team.add') }}" method="POST">
@@ -21,7 +26,10 @@
                         </div>
                         <div class="form-group">
                             <label for="nomor_hp">Nama Team</label>
-                            <input type="text" class="form-control" name="nama_team" required />
+                            <div class="input-group">
+                                <input id="nama_team" type="text" class="form-control" name="nama_team" required />
+                                <button type="button" onclick="cekNamaTeam()" class="btn btn-primary">Cek Nama</button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="nomor_hp">Asal Sekolah</label>
@@ -40,3 +48,31 @@
         </form>
     </div>
 </div>
+
+@push('js')
+    <script>
+        async function cekNamaTeam() {
+            const nama_team = document.getElementById('nama_team').value;
+            const apiUrl = `{{ route('team.show', ['team' => 'ID_PLACEHOLDER']) }}`.replace(
+                'ID_PLACEHOLDER', nama_team);
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                if (data == 0) {
+                    const notyf = new Notyf();
+                    notyf.success('Nama team tersedia!');
+                } else {
+                    const notyf = new Notyf();
+                    notyf.error('Nama team sudah digunakan!');
+                }
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+    </script>
+@endpush

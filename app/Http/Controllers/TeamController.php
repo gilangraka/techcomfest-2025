@@ -66,6 +66,12 @@ class TeamController extends Controller
         return view('pages.team.index', compact('data'));
     }
 
+    public function show($nama_team)
+    {
+        $team = RefTeam::where('nama_team', $nama_team)->count();
+        return $team;
+    }
+
     public function buatTeam(Request $request)
     {
         $validator = Validator::make($request->all(), [
