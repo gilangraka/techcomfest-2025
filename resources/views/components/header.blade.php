@@ -31,3 +31,21 @@
         </div>
     </nav>
 </header>
+
+@push('scripts')
+<script>
+
+const navLinks = document.querySelector(".nav-links");
+function onToggleMenu(e) {
+    e.name = e.name === "menu" ? "close" : "menu";
+
+    if (navLinks.classList.contains("-top-[800px]")) {
+        navLinks.classList.remove("-top-[800px]");
+        navLinks.classList.add("top-0");
+    } else {
+        navLinks.classList.remove("top-0");
+        navLinks.classList.add("-top-[800px]");
+    }
+}
+</script>
+@endpush
