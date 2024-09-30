@@ -27,7 +27,13 @@
                                     <td class="text-center">{{ $key + 1 }}</td>
                                     <td class="text-center">{{ $value->nama_team }}</td>
                                     <td class="text-center">{{ $value->ref_kategori->nama_kategori }}</td>
-                                    <td>Gilang</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($value->ref_peserta as $item)
+                                                <li>{{ $item->user->name }} <b>({{ $item->user->email }})</b></li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
                                     <td class="text-center">
                                         @if ($value->is_verified == 0)
                                             <span class="fw-bold text-danger">Unverified</span>

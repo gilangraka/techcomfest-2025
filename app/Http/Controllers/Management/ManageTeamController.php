@@ -23,7 +23,7 @@ class ManageTeamController extends Controller
 
         $data = collect();
         if ($user->hasRole('Developer')) {
-            $developerData = RefTeam::with('ref_kategori')->whereNotNull('file_berkas')
+            $developerData = RefTeam::with(['ref_kategori', 'ref_peserta.user'])->whereNotNull('file_berkas')
                 ->whereNotNull('file_bukti_pembayaran')
                 ->get();
             $data = $data->merge($developerData);
@@ -31,14 +31,14 @@ class ManageTeamController extends Controller
 
         foreach ($kategoriMap as $key => $value) {
             if ($user->hasRole($key)) {
-                $kategoriData = RefTeam::with('ref_kategori')->where('kategori_id', $value)
+                $kategoriData = RefTeam::with(['ref_kategori', 'ref_peserta.user'])->where('kategori_id', $value)
                     ->whereNotNull('file_berkas')
                     ->whereNotNull('file_bukti_pembayaran')
                     ->get();
                 $data = $data->merge($kategoriData);
             }
         }
-        // return $data
+        // return $data;
         return view('pages.manage-team.index', compact('data'));
     }
 
