@@ -74,7 +74,7 @@ class DashboardController extends Controller
     public function update_profile(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'foto_profil' => 'required|file|mimes:jpeg,png,jpg'
+            'foto_profil' => 'required|file|mimes:jpeg,png,jpg|max:1024'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
