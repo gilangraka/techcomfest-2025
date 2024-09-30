@@ -67,7 +67,7 @@
                 const tags = ['name', 'email', 'nik', 'tgl_lahir', 'nomor_hp', 'asal_sekolah', 'gender', 'kategori',
                     'team'
                 ];
-                const elements = {};
+                let elements = {};
 
                 tags.forEach(tag => {
                     elements[tag] = document.getElementById(tag);

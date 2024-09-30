@@ -7,12 +7,15 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            <div class="mb-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#independentModal">
+                    <i class="bi bi-plus-circle me-2"></i> Tambah Independent
+                </button>
+            </div>
+        </div>
+        <div class="col-12">
             <div class="p-5 profile-card bg-white border rounded-3">
-                <div class="mb-4">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#independentModal">
-                        <i class="bi bi-plus-circle me-2"></i> Tambah Independent
-                    </button>
-                </div>
+
                 <div class="table-responsive">
                     <table id="teamTable" class="table table-bordered">
                         <thead>

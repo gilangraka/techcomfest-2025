@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ManageIndependentController extends Controller
 {
@@ -18,7 +19,9 @@ class ManageIndependentController extends Controller
             $query->whereIn('name', ['independenS', 'independenM', 'independenN']);
         })->get();
 
-        $ref_roles = DB::table('roles')->get();
+        $ref_roles = DB::table('roles')
+            ->whereIn('name', ['independenS', 'independenM', 'independenN'])
+            ->get();
 
         return view('pages.manage-independent.index', compact('data', 'ref_roles'));
     }
@@ -26,18 +29,40 @@ class ManageIndependentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $email)
     {
-        $user = User::with('roles')->findOrFail($id);
+        $user = User::with('ref_peserta.ref_kategori')->where('email', $email)->first();
         return response()->json($user);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'jenis_independen' => 'required|exists:roles,id'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->all();
+            foreach ($errors as $error) {
+                notyf()->error($error);
+            }
+            return back();
+        }
+
+        $role = DB::table('roles')->find($request->jenis_independen);
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            notyf()->error('Data tidak ditemukan. Periksa inputan email kamu!');
+            return back();
+        }
+        $user->assignRole($role->name);
+
+        notyf()->success('Berhasil menambah independen!');
+        return back();
     }
 
     /**

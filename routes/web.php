@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('manage-team', ManageTeamController::class)->only(['index', 'update', 'destroy'])->middleware('can:Manage Team');
     Route::get('manage-team/{id?}', [ManageTeamController::class, 'show'])->name('manage-team.show')->middleware('can:Manage Team');
 
-    Route::resource('manage-independent', ManageIndependentController::class);
+    Route::resource('manage-independent', ManageIndependentController::class)->only(['index', 'store', 'show', 'destroy']);
 
     Route::get('hasil-software', [HasilKaryaController::class, 'software'])->name('hasil-software.index')->middleware('can:Hasil Software');
     Route::get('hasil-multimedia', [HasilKaryaController::class, 'multimedia'])->name('hasil-multimedia.index')->middleware('can:Hasil Multimedia');
