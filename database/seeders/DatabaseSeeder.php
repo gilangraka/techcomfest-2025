@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $kategori = ['Software', 'Network', 'Multimedia'];
+        $kategori = ['Web Design', 'UI/UX Design', 'Capture the Flag'];
         foreach ($kategori as $item) {
             RefKategori::create(['nama_kategori' => $item]);
         }

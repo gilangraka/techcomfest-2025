@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('ref_team', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nama_team')->unique();
+            $table->string('asal_sekolah');
+            $table->string('nama_pembina');
             $table->unsignedBigInteger('kategori_id');
             $table->string('file_berkas')->nullable();
             $table->string('file_bukti_pembayaran')->nullable();

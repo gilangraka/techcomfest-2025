@@ -14,14 +14,11 @@ return new class extends Migration
         Schema::create('ref_peserta', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('nik')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->string('nomor_hp', 20);
             $table->unsignedBigInteger('gender_id');
             $table->unsignedBigInteger('kategori_id');
-            $table->string('asal_sekolah')->nullable();
             $table->string('foto_profil')->nullable();
-            $table->string('nama_pembina')->nullable();
             $table->uuid('team_id')->nullable();
             $table->integer('is_ketua')->default(0);
             $table->timestamps();

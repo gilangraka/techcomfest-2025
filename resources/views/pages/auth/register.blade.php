@@ -37,6 +37,9 @@
                         type="text" />
                 </div>
                 <div class="my-4">
+                    <x-partials.form-date label="Tanggal Lahir" name="tgl_lahir" />
+                </div>
+                <div class="my-4">
                     <x-partials.form-select name="gender_id" labelName="Jenis Kelamin">
                         <option disabled selected>Pilih Jenis Kelamin</option>
                         @foreach ($referensi['ref_gender'] as $item)

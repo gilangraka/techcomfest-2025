@@ -23,6 +23,14 @@
                             <label for="nomor_hp">Nama Team</label>
                             <input type="text" class="form-control" name="nama_team" required />
                         </div>
+                        <div class="form-group">
+                            <label for="nomor_hp">Asal Sekolah</label>
+                            <input type="text" class="form-control" name="asal_sekolah" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="nomor_hp">Nama Pembina</label>
+                            <input type="text" class="form-control" name="nama_pembina" required />
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

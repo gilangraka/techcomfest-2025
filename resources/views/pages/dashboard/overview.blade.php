@@ -9,11 +9,6 @@
 </div>
 
 <div class="row mt-3">
-    <p class="col-lg-3 col-md-4 label "><b>NIK</b></p>
-    <p class="col-lg-9 col-md-8">{{ $data->ref_peserta->nik }}</p>
-</div>
-
-<div class="row mt-3">
     <p class="col-lg-3 col-md-4 label "><b>Nama Lengkap</b></p>
     <p class="col-lg-9 col-md-8">{{ $data->name }}</p>
 </div>
@@ -31,16 +26,6 @@
 <div class="row mt-3">
     <p class="col-lg-3 col-md-4 label "><b>Gender</b></p>
     <p class="col-lg-9 col-md-8">{{ $data->ref_peserta->ref_gender->nama_gender }}</p>
-</div>
-
-<div class="row mt-3">
-    <p class="col-lg-3 col-md-4 label "><b>Asal Sekolah</b></p>
-    <p class="col-lg-9 col-md-8">{{ $data->ref_peserta->asal_sekolah }}</p>
-</div>
-
-<div class="row mt-3">
-    <p class="col-lg-3 col-md-4 label "><b>Nama Pembina</b></p>
-    <p class="col-lg-9 col-md-8">{{ $data->ref_peserta->nama_pembina }}</p>
 </div>
 
 <div class="row mt-3">

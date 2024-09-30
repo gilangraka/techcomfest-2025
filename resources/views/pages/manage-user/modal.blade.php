@@ -17,10 +17,6 @@
                         <td id="email"></td>
                     </tr>
                     <tr>
-                        <th>NIK</th>
-                        <td id="nik"></td>
-                    </tr>
-                    <tr>
                         <th>Gender</th>
                         <td id="gender"></td>
                     </tr>
@@ -39,10 +35,6 @@
                     <tr>
                         <th>Nomor HP</th>
                         <td id="nomor_hp"></td>
-                    </tr>
-                    <tr>
-                        <th>Asal Sekolah</th>
-                        <td id="asal_sekolah"></td>
                     </tr>
                 </table>
             </div>
@@ -64,7 +56,7 @@
                 }
                 const data = await response.json();
 
-                const tags = ['name', 'email', 'nik', 'tgl_lahir', 'nomor_hp', 'asal_sekolah', 'gender', 'kategori',
+                const tags = ['name', 'email', 'tgl_lahir', 'nomor_hp', 'gender', 'kategori',
                     'team'
                 ];
                 let elements = {};
@@ -75,10 +67,8 @@
 
                 elements['name'].innerText = data.name;
                 elements['email'].innerText = data.email;
-                elements['nik'].innerText = data.ref_peserta.nik;
                 elements['tgl_lahir'].innerText = data.ref_peserta.tgl_lahir;
                 elements['nomor_hp'].innerText = data.ref_peserta.nomor_hp;
-                elements['asal_sekolah'].innerText = data.ref_peserta.asal_sekolah;
                 elements['gender'].innerText = data.ref_peserta.ref_gender.nama_gender;
                 elements['kategori'].innerText = data.ref_peserta.ref_kategori.nama_kategori;
                 elements['team'].innerText = data.ref_peserta?.ref_team?.nama_team ? `${data.ref_peserta.ref_team
