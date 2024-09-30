@@ -79,8 +79,6 @@
             }
             const data = await response.json();
 
-            console.log(data)
-
             if (!data.ref_peserta) {
                 const notyf = new Notyf();
                 notyf.error('Data tidak ditemukan!');

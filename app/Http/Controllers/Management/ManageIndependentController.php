@@ -31,7 +31,7 @@ class ManageIndependentController extends Controller
      */
     public function show(string $email)
     {
-        $user = User::with('ref_peserta.ref_kategori')->where('email', $email)->first();
+        $user = User::with(['ref_peserta.ref_kategori', 'roles'])->where('email', $email)->first();
         return response()->json($user);
     }
 
@@ -68,8 +68,14 @@ class ManageIndependentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $email)
     {
-        //
+        $user = User::where('email', $email)->first();
+        $user->removeRole('IndependenM');
+        $user->removeRole('IndependenS');
+        $user->removeRole('IndependenN');
+
+        notyf()->success('Berhasil menghapus independen!');
+        return back();
     }
 }

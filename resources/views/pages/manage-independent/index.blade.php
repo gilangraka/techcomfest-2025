@@ -40,8 +40,8 @@
                                         @endforeach
                                     </td>
                                     <td class="text-center">
-                                        <button onclick="openIndependentModalDelete({{ $value->id }})" type="button"
-                                            class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete">
+                                        <button type="button" onclick="openHapus('{{ $value->email }}')"
+                                            class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </td>
