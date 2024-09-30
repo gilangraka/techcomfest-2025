@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $kategori = ['Software', 'Network', 'Multimedia'];
+        $kategori = ['Web Design', 'UI/UX Design', 'Capture the Flag'];
         foreach ($kategori as $item) {
             RefKategori::create(['nama_kategori' => $item]);
         }
@@ -35,6 +35,31 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+        }
+
+        $permissions = ['Manage User', 'Manage Team', 'Manage Independent', 'Manage', 'Hasil Multimedia', 'Hasil Network', 'Hasil Software', 'Hasil Karya'];
+        foreach ($permissions as $key => $value) {
+            DB::table('permissions')->insert([
+                'name' => $value,
+                'guard_name' => 'web',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
+
+        $role_has_permissions = [
+            '1' => ['1', '2', '3', '4', '5', '6', '7', '8'],
+            '2' => ['2', '4', '7', '8'],
+            '3' => ['2', '4', '6', '8'],
+            '4' => ['2', '4', '5', '8']
+        ];
+        foreach ($role_has_permissions as $role_id => $permissions) {
+            foreach ($permissions as $permission_id) {
+                DB::table('role_has_permissions')->insert([
+                    'permission_id' => $permission_id,
+                    'role_id' => $role_id
+                ]);
+            }
         }
 
         $user = new User([

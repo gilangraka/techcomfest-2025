@@ -34,7 +34,7 @@ class BerkasController extends Controller
     public function uploadBerkas(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file_berkas' => 'required|file|mimes:zip,rar'
+            'file_berkas' => 'required|file|mimes:zip,rar|max:25600'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
@@ -81,7 +81,7 @@ class BerkasController extends Controller
     public function uploadBuktiPembayaran(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'file_bukti_pembayaran' => 'required|file|mimes:jpeg,png,jpg'
+            'file_bukti_pembayaran' => 'required|file|mimes:jpeg,png,jpg|max:2048'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();

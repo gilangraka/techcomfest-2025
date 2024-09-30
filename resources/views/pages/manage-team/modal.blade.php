@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <input type="text" hidden id="id_team">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="detailTeam">
                     <tr>
                         <th>Nama Team</th>
                         <td id="nama_team"></td>
@@ -40,20 +40,13 @@
                         </td>
                     </tr>
                 </table>
-                <div class="row">
-                    <div class="col-6">
-                        <button onclick="showKonfirmasi()" type="button" class="btn btn-danger w-100">Tolak
-                            Verifikasi</button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100">Verifikasi Tim</button>
-                    </div>
-                </div>
             </div>
         </div>
+        <form id="verifikasiForm" method="POST">
+            @csrf
+            @method('PUT')
+        </form>
     </div>
-
-
 </div>
 
 @push('js')
@@ -68,6 +61,22 @@
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
+                const is_verified = data.is_verified;
+                if (is_verified != 1) {
+                    const detailTeam = document.getElementById('detailTeam');
+                    detailTeam.insertAdjacentHTML('afterend', `
+                        <div class="row">
+                            <div class="col-6">
+                                <button onclick="showKonfirmasi()" type="button" class="btn btn-danger w-100">Tolak
+                                    Verifikasi</button>
+                            </div>
+                            <div class="col-6">
+                                <button onclick="verifikasi()" type="submit" class="btn btn-primary w-100">Verifikasi
+                                    Tim</button>
+                            </div>
+                        </div>
+                    `);
+                }
 
                 const tags = ['id_team', 'nama_team', 'bidang_lomba', 'berkas', 'bukti_pembayaran', 'anggota'];
                 const elements = {};
@@ -91,6 +100,14 @@
             } catch (error) {
                 console.error('There has been a problem with your fetch operation:', error);
             }
+        }
+
+        function verifikasi() {
+            const id_team = document.getElementById('id_team').value;
+            const verifForm = document.getElementById('verifikasiForm');
+
+            verifForm.action = `{{ route('manage-team.update', ':id_team') }}`.replace(':id_team', id_team);
+            verifForm.submit();
         }
 
         function tutupTolakDialog() {

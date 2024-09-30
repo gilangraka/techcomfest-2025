@@ -20,14 +20,10 @@ class TeamController extends Controller
         $user = User::with('ref_peserta.ref_team')->find(Auth::id());
         $requiredFields = [
             $user->name,
-            $user->ref_peserta->nik,
             $user->ref_peserta->tgl_lahir,
             $user->ref_peserta->nomor_hp,
             $user->ref_peserta->gender_id,
             $user->ref_peserta->kategori_id,
-            $user->ref_peserta->asal_sekolah,
-            $user->ref_peserta->foto_profil,
-            $user->ref_peserta->nama_pembina
         ];
         if (collect($requiredFields)->contains(null)) {
             notyf()->error("Lengkapi data terlebih dahulu!");
@@ -74,6 +70,8 @@ class TeamController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_team' => 'required|string',
+            'asal_sekolah' => 'required|string',
+            'nama_pembina' => 'required|string'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
@@ -91,6 +89,8 @@ class TeamController extends Controller
             $kategori = $user->ref_peserta->kategori_id;
             $ref_team = new RefTeam([
                 'nama_team' => $validatedData['nama_team'],
+                'asal_sekolah' => $validatedData['asal_sekolah'],
+                'nama_pembina' => $validatedData['nama_pembina'],
                 'kategori_id' => $kategori
             ]);
             $ref_team->save();

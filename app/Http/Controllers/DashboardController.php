@@ -44,12 +44,9 @@ class DashboardController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'nik'  => 'required|string|max:50',
             'tgl_lahir' => 'required|date',
             'nomor_hp' => 'required|string|max:20',
             'gender_id' => 'required|exists:ref_gender,id',
-            'asal_sekolah' => 'required|string|max:100',
-            'nama_pembina' => 'required|string|max:100',
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
@@ -77,7 +74,7 @@ class DashboardController extends Controller
     public function update_profile(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'foto_profil' => 'required|file|mimes:jpeg,png,jpg'
+            'foto_profil' => 'required|file|mimes:jpeg,png,jpg|max:1024'
         ]);
         if ($validator->fails()) {
             $errors = $validator->errors()->all();

@@ -17,6 +17,16 @@
 </div>
 
 <div class="row mt-3">
+    <p class="col-lg-3 col-md-4 label "><b>Asal Sekolah</b></p>
+    <p class="col-lg-9 col-md-8">{{ $data['team']->asal_sekolah }}</p>
+</div>
+
+<div class="row mt-3">
+    <p class="col-lg-3 col-md-4 label "><b>Nama Pembina</b></p>
+    <p class="col-lg-9 col-md-8">{{ $data['team']->nama_pembina }}</p>
+</div>
+
+<div class="row mt-3">
     <p class="col-lg-3 col-md-4 label "><b>Kategori Lomba</b></p>
     <p class="col-lg-9 col-md-8">{{ $data['team']->ref_kategori->nama_kategori }}</p>
 </div>
@@ -24,18 +34,21 @@
 <div class="row mt-3">
     <p class="col-lg-3 col-md-4 label"><b>Anggota</b></p>
     <div class="col-lg-9 col-md-8">
+        @php
+            $nomor = 1;
+        @endphp
         <table class="table table-bordered text-center">
             <tr class="table-secondary">
                 <th>#</th>
                 <th>Nama Anggota</th>
             </tr>
             <tr>
-                <td>1</td>
+                <td>{{ $nomor++ }}</td>
                 <td>{{ $data['ketua']->user->name }} ({{ $data['ketua']->user->email }}) <b>*</b></td>
             </tr>
             @foreach ($data['anggota'] as $key => $item)
                 <tr>
-                    <td>{{ $key + 2 }}</td>
+                    <td>{{ $nomor++ }}</td>
                     <td>{{ $item->user->name }} ({{ $item->user->email }})</td>
                 </tr>
             @endforeach

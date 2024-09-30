@@ -29,6 +29,7 @@ class RegisterController extends Controller
             'email' => 'required|unique:users,email',
             'password' => 'required|string|confirmed',
             'nomor_hp' => 'required|string|max:20',
+            'tgl_lahir' => 'required|date',
             'gender_id' => 'required|exists:ref_gender,id',
             'kategori_id' => 'required|exists:ref_kategori,id',
         ]);
