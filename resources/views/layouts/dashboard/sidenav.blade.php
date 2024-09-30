@@ -1,5 +1,5 @@
 {{-- Aside --}}
-<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark"> <!--begin::Sidebar Brand-->
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="light"> <!--begin::Sidebar Brand-->
     <div class="sidebar-brand"><a href="./index.html" class="brand-link"><span class="brand-text fw-light">TECHCOMFEST
                 2025</span></a></div>
     <div class="sidebar-wrapper">

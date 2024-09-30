@@ -7,7 +7,7 @@
     <p class="col-lg-3 col-md-4 label "><b>Team ID</b></p>
     <p class="col-lg-9 col-md-8 d-flex gap-3">
         <span id="team_id">{{ $data['team']->id }}</span>
-        <span style="cursor: pointer;" onclick="copyText()"><i class="bi bi-copy"></i></spanc>
+        <span style="cursor: pointer;" onclick="copyText()"><i class="bi bi-copy"></i></span>
     </p>
 </div>
 
