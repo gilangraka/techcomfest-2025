@@ -5,6 +5,7 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
+    important: true,
     theme: {
         extend: {
             colors: {
